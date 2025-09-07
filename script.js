@@ -8,7 +8,6 @@ const icons = {
 
 function updateIcon(isLight){
   if (!themeBtn) return;
-  // في الوضع الغامق نعرض الشمس (للتحويل إلى الفاتح)، وفي الفاتح نعرض القمر
   themeBtn.innerHTML = isLight ? icons.moon : icons.sun;
   themeBtn.title = isLight ? 'الوضع الداكن' : 'الوضع الفاتح';
   themeBtn.setAttribute('aria-label', themeBtn.title);
@@ -16,12 +15,11 @@ function updateIcon(isLight){
 
 function applyTheme(theme){
   const isLight = theme === 'light';
-  document.body.classList.toggle('light-mode', isLight); // يطابق CSS لديك
+  document.body.classList.toggle('light-mode', isLight);
   localStorage.setItem('theme', isLight ? 'light' : 'dark');
   updateIcon(isLight);
 }
 
-// default = dark (بدون الاعتماد على نظام التشغيل)
 const saved = localStorage.getItem('theme');
 applyTheme(saved || 'dark');
 
@@ -30,27 +28,80 @@ themeBtn?.addEventListener('click', () => {
   applyTheme(next);
 });
 
+// ===== Download whole page as PDF =====
+document.getElementById("downloadPDF")?.addEventListener("click", function (e) {
+  e.preventDefault();
+  const element = document.body;
+  html2pdf().from(element).save("profile.pdf");
+});
 
 document.addEventListener("DOMContentLoaded", () => {
-
-  // ===== Smooth Scroll =====
+  // ===== Smooth Scroll + Immediate Active (Option 1) =====
   const links = document.querySelectorAll('.main-nav .nav-link');
-
-  links.forEach(a => {
-    a.addEventListener('click', (e) => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        history.replaceState(null, '', a.getAttribute('href'));
-      }
-    });
-  });
 
   function setActiveByHash(hash) {
     links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === hash));
   }
 
+  // سنستخدم هذا الفلاغ لإيقاف IO مؤقتًا أثناء السموث سكرول
+  let suppressIO = false;
+  let scrollStopTimer = null;
+
+  function armScrollStopWatcher(){
+    // كل ما يصير سكрол نعيد ضبط المؤقت
+    window.addEventListener('scroll', onScrollDuringSmooth, { passive: true });
+    onScrollDuringSmooth(); // شغّلي العدّاد الآن
+  }
+
+  function onScrollDuringSmooth(){
+    clearTimeout(scrollStopTimer);
+    scrollStopTimer = setTimeout(() => {
+      // توقّف السكrol (تقريبًا)
+      suppressIO = false;
+      window.removeEventListener('scroll', onScrollDuringSmooth, { passive: true });
+    }, 180); // 180ms مهلة بسيطة بعد آخر حركة سكrol
+  }
+
+  links.forEach(a => {
+    a.addEventListener('click', (e) => {
+      const hash = a.getAttribute('href');
+      const target = document.querySelector(hash);
+      if (target) {
+        e.preventDefault();
+
+        // فعّل حالة الأكتيف فورًا (الخط + الشادو)
+        setActiveByHash(hash);
+
+        // امنعي IO من إرجاع الأكتيف لـ #home أثناء السموث سكرول
+        suppressIO = true;
+        armScrollStopWatcher();
+
+        // سكرول ناعم
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // حدّث العنوان بدون إطلاق hashchange
+        history.replaceState(null, '', hash);
+      }
+    });
+  });
+
+  // ===== توحيد ارتفاع كروت الفريق =====
+  function equalizeTeamCards() {
+    const slides = document.querySelectorAll('.team-card');
+    let maxHeight = 0;
+    slides.forEach(card => {
+      card.style.height = 'auto';
+      const h = card.offsetHeight;
+      if (h > maxHeight) maxHeight = h;
+    });
+    slides.forEach(card => {
+      card.style.height = maxHeight + 'px';
+    });
+  }
+  window.addEventListener('load', equalizeTeamCards);
+  window.addEventListener('resize', equalizeTeamCards);
+
+  // ===== جهّز قائمة السيكشنز للـ IO =====
   const sections = [...links]
     .map(a => document.querySelector(a.getAttribute('href')))
     .filter(Boolean);
@@ -60,14 +111,8 @@ document.addEventListener("DOMContentLoaded", () => {
     slidesPerView: 3,
     spaceBetween: 20,
     loop: true,
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    autoplay: {
-      delay: 4000,
-      disableOnInteraction: false,
-    },
+    navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+    autoplay: { delay: 4000, disableOnInteraction: false },
     breakpoints: {
       640: { slidesPerView: 1, spaceBetween: 20 },
       768: { slidesPerView: 2, spaceBetween: 25 },
@@ -77,7 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== FAQ Toggle =====
   const faqItems = document.querySelectorAll('.faq-item');
-
   faqItems.forEach(item => {
     const faqAnswer = item.querySelector('.faq-answer');
     item.addEventListener('click', () => {
@@ -87,9 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
           i.querySelector('.faq-answer').style.maxHeight = 0;
         }
       });
-
       item.classList.toggle('active');
-
       if (item.classList.contains('active')) {
         faqAnswer.style.maxHeight = faqAnswer.scrollHeight + "px";
       } else {
@@ -98,13 +140,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ===== Intersection Observer for active nav =====
+  // ===== Intersection Observer لتحديث الأكتيف أثناء التمرير =====
   const headerHeight = document.querySelector('.site-header')?.offsetHeight || 80;
 
   const io = new IntersectionObserver((entries) => {
+    if (suppressIO) return; // أثناء السموث سكرول لا نحدّث الأكتيف
+
+    // خذ الأكثر ظهورًا، ولو تساوت القيم أعطِ الأفضلية لغير #home
     const visible = entries
       .filter(e => e.isIntersecting)
-      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      .sort((a, b) => {
+        if (b.intersectionRatio === a.intersectionRatio) {
+          // فضّل السيكشن غير #home لتفادي الرجوع للرئيسية
+          const aIsHome = a.target.id === 'home' ? 1 : 0;
+          const bIsHome = b.target.id === 'home' ? 1 : 0;
+          return aIsHome - bIsHome;
+        }
+        return b.intersectionRatio - a.intersectionRatio;
+      })[0];
 
     if (visible) {
       const id = '#' + visible.target.id;
@@ -113,14 +166,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, {
     root: null,
-    rootMargin: `-${headerHeight + 10}px 0px -55% 0px`,
-    threshold: [0.15, 0.3, 0.6]
+    // قلّلنا مساحة الظهور السفليّة لتقليل بقاء #home "مرئي" وهو فوق
+    rootMargin: `-${headerHeight + 8}px 0px -60% 0px`,
+    threshold: [0.15, 0.35, 0.6]
   });
 
   sections.forEach(sec => io.observe(sec));
 
+  // حالة البداية
   setActiveByHash(location.hash || '#home');
 
+  // احتياط إذا تغيّر الهاش من خارج الكود
   window.addEventListener('hashchange', () => {
     setActiveByHash(location.hash || '#home');
   });
@@ -128,8 +184,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===== Counter Animation =====
   function animateCounter(el, target) {
     let current = 0;
-    const duration = 2000; 
-    const intervalTime = 50; 
+    const duration = 2000;
+    const intervalTime = 50;
     const steps = Math.ceil(duration / intervalTime);
     const step = Math.ceil(target / steps);
 
@@ -148,5 +204,4 @@ document.addEventListener("DOMContentLoaded", () => {
     stat.textContent = "0+";
     animateCounter(stat, target);
   });
-
 });
