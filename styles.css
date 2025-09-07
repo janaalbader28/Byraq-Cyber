@@ -78,7 +78,7 @@ body {
 }
 nav {
   position: relative;
-  z-index: 1000; /* يخلي الناف دايمًا فوق البطاقات */
+  z-index: 1000; 
 }
 
 .nav-wrap {
@@ -379,17 +379,13 @@ section[id] { scroll-margin-top: 90px; }
   margin-bottom: 50px;
 }
 
-/* 1. خليه flex طبيعي بدون wrap */
-
-
 
 .team-swiper .swiper-slide {
   display: flex;
   justify-content: center;
-  align-items: stretch; /* الكارد يمتد ليملأ السلايد */
+  align-items: stretch; 
 }
 
-/* 3. الكارد نفسه */
 .team-card {
   display: flex;
   flex-direction: column;
@@ -412,11 +408,10 @@ section[id] { scroll-margin-top: 90px; }
     border-color 0.35s ease;
 }
 
-/* تأثير الهوفر */
 .team-card:hover {
 
   box-shadow: 0 20px 40px rgba(103,81,220,0.25),
-              0 0 20px rgba(94,185,204,0.2); /* نفس ألوان الموقع */
+              0 0 20px rgba(94,185,204,0.2); 
   border-color: var(--primary);
   background: linear-gradient(180deg, rgba(21,25,46,0.95), rgba(10,12,24,0.95));
   
@@ -473,7 +468,6 @@ section[id] { scroll-margin-top: 90px; }
   transform: scale(1.15);
 }
 
-/* تصغير حجم الأسهم على الشاشات الصغيرة */
 @media (max-width: 767px) {
   .swiper-button-next,
   .swiper-button-prev {
@@ -645,7 +639,6 @@ section[id] { scroll-margin-top: 90px; }
   outline-color: rgba(103,81,220,0.35);
 }
 
-/* زوايا مقطوعة */
 .cap-card.notch-tl{clip-path: polygon(16px 0,100% 0,100% 100%,0 100%,0 16px);}
 .cap-card.notch-tr{clip-path: polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);}
 .cap-card.notch-bl{clip-path: polygon(0 0,100% 0,100% 100%,16px 100%,0 calc(100% - 16px));}
@@ -745,7 +738,6 @@ section[id] { scroll-margin-top: 90px; }
   animation: wave 2s ease-out infinite;
 }
 
-/* حدد لون كل نقطة وتأخير الحركة بشكل يدوي */
 .loading .dot:nth-child(1) {
   background: #7ef9ff;
 }
@@ -1223,10 +1215,10 @@ body.light-mode {
 
 
 .projects-title {
-  text-align: center;   /* النص بالوسط */
-  font-size: 2rem;      /* حجم مناسب */
-  font-weight: bold;    /* سماكة */
-  margin-bottom: 20px;  /* مسافة تحت العنوان */
+  text-align: center; 
+  font-size: 2rem;     
+  font-weight: bold;   
+  margin-bottom: 20px;  
  
 }
 
@@ -1271,10 +1263,9 @@ body.light-mode {
   filter: drop-shadow(0 0 6px rgba(103,81,220,0.35));
 }
 
-/* خصيصاً إذا كان X فيه لوجو أكبر شوي */
 .contact-link.x-link i {
-  font-size: 22px; /* أكبر شوي عشان يتناسق مع GitHub */
-  color: var(--primary); /* اللون الرسمي X / Twitter سابقاً */
+  font-size: 22px; 
+  color: var(--primary); 
   filter: drop-shadow(0 0 6px rgba(103,81,220,0.35));
 }
 
