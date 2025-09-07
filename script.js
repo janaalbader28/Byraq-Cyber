@@ -43,23 +43,20 @@ document.addEventListener("DOMContentLoaded", () => {
     links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === hash));
   }
 
-  // سنستخدم هذا الفلاغ لإيقاف IO مؤقتًا أثناء السموث سكرول
   let suppressIO = false;
   let scrollStopTimer = null;
 
   function armScrollStopWatcher(){
-    // كل ما يصير سكрол نعيد ضبط المؤقت
     window.addEventListener('scroll', onScrollDuringSmooth, { passive: true });
-    onScrollDuringSmooth(); // شغّلي العدّاد الآن
+    onScrollDuringSmooth(); 
   }
 
   function onScrollDuringSmooth(){
     clearTimeout(scrollStopTimer);
     scrollStopTimer = setTimeout(() => {
-      // توقّف السكrol (تقريبًا)
       suppressIO = false;
       window.removeEventListener('scroll', onScrollDuringSmooth, { passive: true });
-    }, 180); // 180ms مهلة بسيطة بعد آخر حركة سكrol
+    }, 180); 
   }
 
   links.forEach(a => {
@@ -69,23 +66,18 @@ document.addEventListener("DOMContentLoaded", () => {
       if (target) {
         e.preventDefault();
 
-        // فعّل حالة الأكتيف فورًا (الخط + الشادو)
         setActiveByHash(hash);
 
-        // امنعي IO من إرجاع الأكتيف لـ #home أثناء السموث سكرول
         suppressIO = true;
         armScrollStopWatcher();
 
-        // سكرول ناعم
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-        // حدّث العنوان بدون إطلاق hashchange
         history.replaceState(null, '', hash);
       }
     });
   });
 
-  // ===== توحيد ارتفاع كروت الفريق =====
   function equalizeTeamCards() {
     const slides = document.querySelectorAll('.team-card');
     let maxHeight = 0;
@@ -101,7 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener('load', equalizeTeamCards);
   window.addEventListener('resize', equalizeTeamCards);
 
-  // ===== جهّز قائمة السيكشنز للـ IO =====
   const sections = [...links]
     .map(a => document.querySelector(a.getAttribute('href')))
     .filter(Boolean);
@@ -140,18 +131,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ===== Intersection Observer لتحديث الأكتيف أثناء التمرير =====
+  // ===== Intersection Observer =====
   const headerHeight = document.querySelector('.site-header')?.offsetHeight || 80;
 
   const io = new IntersectionObserver((entries) => {
-    if (suppressIO) return; // أثناء السموث سكرول لا نحدّث الأكتيف
+    if (suppressIO) return; 
 
-    // خذ الأكثر ظهورًا، ولو تساوت القيم أعطِ الأفضلية لغير #home
     const visible = entries
       .filter(e => e.isIntersecting)
       .sort((a, b) => {
         if (b.intersectionRatio === a.intersectionRatio) {
-          // فضّل السيكشن غير #home لتفادي الرجوع للرئيسية
           const aIsHome = a.target.id === 'home' ? 1 : 0;
           const bIsHome = b.target.id === 'home' ? 1 : 0;
           return aIsHome - bIsHome;
@@ -166,17 +155,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, {
     root: null,
-    // قلّلنا مساحة الظهور السفليّة لتقليل بقاء #home "مرئي" وهو فوق
     rootMargin: `-${headerHeight + 8}px 0px -60% 0px`,
     threshold: [0.15, 0.35, 0.6]
   });
 
   sections.forEach(sec => io.observe(sec));
 
-  // حالة البداية
   setActiveByHash(location.hash || '#home');
 
-  // احتياط إذا تغيّر الهاش من خارج الكود
   window.addEventListener('hashchange', () => {
     setActiveByHash(location.hash || '#home');
   });
