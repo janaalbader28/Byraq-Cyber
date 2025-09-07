@@ -1,2 +1,2 @@
 # Byraq-Cyber
-🌐 Live Website: [ByraqCyber](byraqcyber.netlify.app)  
+🌐 Live Website: [ByraqCyber](https://byraqcyber.netlify.app/#home)  
