@@ -11,7 +11,12 @@
   <link rel="stylesheet" href="styles.css" />
   <!-- Swiper CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-papVg3u7U3..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 
 </head>
 <body>
@@ -22,7 +27,7 @@
         <span class="brand-text">بيرق سايبر</span>
       </a>
       <nav class="main-nav" aria-label="التنقل الرئيسي">
-      <button id="themeToggle" class="mode-toggle" aria-label="Toggle theme" type="button"></button>
+     
         <!-- underline + glow on active -->
         <a class="nav-link active" href="#home">الرئيسية</a>
         <a class="nav-link" href="#about">من نحن</a>
@@ -50,14 +55,14 @@
       <!-- buttons -->
       <div class="action-bar">
         <a href="#faq" class="btn-tab btn-ghost-tab">الأسئلة الشائعة</a>
-        <a href="#" class="btn-tab btn-primary-tab">تحميل البروفايل PDF</a>
+       <a href="#" class="btn-tab btn-primary-tab" id="downloadPDF">تحميل البروفايل PDF</a>
       </div>
 
       <!-- stats -->
       <section class="stats">
-        <div class="stat"><div class="stat-value">20+</div><div class="stat-label">مشروع</div></div>
-        <div class="stat"><div class="stat-value">20+</div><div class="stat-label">مشروع</div></div>
-        <div class="stat"><div class="stat-value">20+</div><div class="stat-label">مشروع</div></div>
+        <div class="stat"><div class="stat-value">14+</div><div class="stat-label">عضو في الفريق</div></div>
+        <div class="stat"><div class="stat-value">40+</div><div class="stat-label">ساعة تدريبية </div></div>
+        <div class="stat"><div class="stat-value">6+</div><div class="stat-label">مشروع منجز</div></div>
       </section>
     </div>
 
@@ -503,7 +508,7 @@
 
   <section id="projects" class="projects-section">
   <div class="container">
-    <h2 class="projects-title">المشاريع: </h2>
+    <h2 class="projects-title">المشاريع </h2>
     <div class="loading">
     <div class="dot"></div>
     <div class="dot"></div>
@@ -588,6 +593,21 @@
           </span>
         </a>
 
+
+<!-- رابط X / Twitter -->
+<a href="https://x.com/BayraqCyber?t=GeswjUrooEpvqzHFhMReNg&s=09" 
+   target="_blank" 
+   rel="noopener" 
+   class="contact-link x-link" 
+   aria-label="تابعنا على X">
+  <!-- أيقونة FA6 X، جرب fa-x-twitter، لو ما ظهرت استبدل بـ fa-twitter -->
+  <i class="fa-brands fa-x-twitter"></i>
+  <span>
+    <strong>X</strong>
+    <small>@BayraqCyber</small>
+  </span>
+</a>
+
         <!-- GitHub -->
         <a href="" target="_blank" rel="noopener" class="contact-link" aria-label="تابعنا على GitHub">
           <i class="fa-brands fa-github"></i>
@@ -596,6 +616,8 @@
             <small>قريبا...</small>
           </span>
         </a>
+
+
       </div>
     </div>
   </div>
