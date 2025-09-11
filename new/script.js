@@ -27,7 +27,7 @@ document.getElementById("downloadPDF")?.addEventListener("click", function (e) {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // ===== Smooth Scroll + Immediate Active (Option 1) =====
+  // ===== Smooth Scroll =====
   const links = document.querySelectorAll('.main-nav .nav-link');
 
   function setActiveByHash(hash) {
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ===== Intersection Observer (no fixed header) =====
+  // ===== Intersection Observer =====
   const io = new IntersectionObserver((entries) => {
     if (suppressIO) return;
 
@@ -223,4 +223,44 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { root: null, threshold: [0, 0.2] });
     topIO.observe(homeSection);
   }
+
+  // ===== Hamburger =====
+const navToggle   = document.getElementById('nav-toggle');
+const hamburger   = document.querySelector('.hamburger');
+const mainNav     = document.getElementById('mobile-menu');
+const navLinksAll = document.querySelectorAll('.main-nav .nav-link');
+
+function updateMenuState() {
+  const open = !!navToggle?.checked;
+  hamburger?.setAttribute('aria-expanded', open ? 'true' : 'false');
+  mainNav?.setAttribute('aria-hidden', open ? 'false' : 'true');
+  document.documentElement.style.overflow = open ? 'hidden' : '';
+}
+
+function closeMenu() {
+  if (navToggle && navToggle.checked) {
+    navToggle.checked = false;
+    updateMenuState();
+  }
+}
+
+navToggle?.addEventListener('change', updateMenuState);
+
+// close after clicking any nav link
+navLinksAll.forEach(a => {
+  a.addEventListener('click', () => {
+    closeMenu();
+  });
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeMenu();
+});
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) closeMenu();
+});
+
+updateMenuState();
+
 });
