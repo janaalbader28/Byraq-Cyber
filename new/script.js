@@ -99,24 +99,54 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ===== FAQ Toggle =====
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach(item => {
-    const faqAnswer = item.querySelector('.faq-answer');
-    item.addEventListener('click', () => {
-      faqItems.forEach(i => {
-        if (i !== item) {
-          i.classList.remove('active');
-          i.querySelector('.faq-answer').style.maxHeight = 0;
-        }
-      });
-      item.classList.toggle('active');
-      if (item.classList.contains('active')) {
-        faqAnswer.style.maxHeight = faqAnswer.scrollHeight + "px";
-      } else {
-        faqAnswer.style.maxHeight = 0;
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+  const a = item.querySelector('.faq-answer');
+  const q = item.querySelector('.faq-question');
+
+  a.style.maxHeight = '0px';
+
+  q.addEventListener('click', () => {
+    const isOpen = item.classList.contains('active');
+
+    faqItems.forEach(i => {
+      if (i !== item) {
+        i.classList.remove('active');
+        const ai = i.querySelector('.faq-answer');
+        ai.style.maxHeight = '0px';
+        ai.style.overflow = 'hidden';
       }
     });
+
+    if (isOpen) {
+      item.classList.remove('active');
+      a.style.maxHeight = '0px';
+      a.style.overflow = 'hidden';
+    } else {
+      item.classList.add('active');
+      a.style.overflow = 'hidden';
+      a.style.maxHeight = '0px';            
+      void a.offsetHeight;
+      a.style.maxHeight = a.scrollHeight + 'px';
+    }
   });
+
+  a.addEventListener('transitionend', (e) => {
+    if (item.classList.contains('active') && e.propertyName === 'max-height') {
+      a.style.maxHeight = 'none';   
+      a.style.overflow = 'visible';
+    }
+  });
+});
+
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.faq-item.active .faq-answer').forEach(a => {
+    a.style.maxHeight = 'none';
+    a.style.overflow = 'visible';
+  });
+});
+
 
   // ===== Intersection Observer =====
   const io = new IntersectionObserver((entries) => {
