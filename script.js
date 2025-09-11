@@ -1,32 +1,23 @@
-// ===== Theme Toggle (default = dark) =====
-const themeBtn = document.getElementById('themeToggle');
 
-const icons = {
-  sun:`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M16.9 16.9l2.2 2.2M2 12h3M19 12h3M4.9 19.1l2.1-2.2M16.9 7l2.2-2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`,
-  moon:`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.2A8.5 8.5 0 1 1 10.8 3a7 7 0 1 0 10.2 10.2z" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>`
-};
-
-function updateIcon(isLight){
-  if (!themeBtn) return;
-  themeBtn.innerHTML = isLight ? icons.moon : icons.sun;
-  themeBtn.title = isLight ? 'الوضع الداكن' : 'الوضع الفاتح';
-  themeBtn.setAttribute('aria-label', themeBtn.title);
-}
-
-function applyTheme(theme){
-  const isLight = theme === 'light';
-  document.body.classList.toggle('light-mode', isLight);
-  localStorage.setItem('theme', isLight ? 'light' : 'dark');
-  updateIcon(isLight);
-}
-
-const saved = localStorage.getItem('theme');
-applyTheme(saved || 'dark');
-
-themeBtn?.addEventListener('click', () => {
-  const next = document.body.classList.contains('light-mode') ? 'dark' : 'light';
-  applyTheme(next);
+const teamSwiper = new Swiper('.team-swiper', {
+  slidesPerView: 3,
+  spaceBetween: 25,
+  loop: true,
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  autoplay: {
+    delay: 10000, // كل 10 ثواني
+    disableOnInteraction: false,
+  },
+  breakpoints: {
+    0: { slidesPerView: 1 },
+    768: { slidesPerView: 2 },
+    1024: { slidesPerView: 3 }
+  }
 });
+
 
 // ===== Open a specific PDF in a new tab =====
 const PDF_PATH = 'docs/profile.pdf';
@@ -36,7 +27,7 @@ document.getElementById("downloadPDF")?.addEventListener("click", function (e) {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // ===== Smooth Scroll + Immediate Active (Option 1) =====
+  // ===== Smooth Scroll =====
   const links = document.querySelectorAll('.main-nav .nav-link');
 
   function setActiveByHash(hash) {
@@ -108,26 +99,56 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ===== FAQ Toggle =====
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach(item => {
-    const faqAnswer = item.querySelector('.faq-answer');
-    item.addEventListener('click', () => {
-      faqItems.forEach(i => {
-        if (i !== item) {
-          i.classList.remove('active');
-          i.querySelector('.faq-answer').style.maxHeight = 0;
-        }
-      });
-      item.classList.toggle('active');
-      if (item.classList.contains('active')) {
-        faqAnswer.style.maxHeight = faqAnswer.scrollHeight + "px";
-      } else {
-        faqAnswer.style.maxHeight = 0;
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+  const a = item.querySelector('.faq-answer');
+  const q = item.querySelector('.faq-question');
+
+  a.style.maxHeight = '0px';
+
+  q.addEventListener('click', () => {
+    const isOpen = item.classList.contains('active');
+
+    faqItems.forEach(i => {
+      if (i !== item) {
+        i.classList.remove('active');
+        const ai = i.querySelector('.faq-answer');
+        ai.style.maxHeight = '0px';
+        ai.style.overflow = 'hidden';
       }
     });
+
+    if (isOpen) {
+      item.classList.remove('active');
+      a.style.maxHeight = '0px';
+      a.style.overflow = 'hidden';
+    } else {
+      item.classList.add('active');
+      a.style.overflow = 'hidden';
+      a.style.maxHeight = '0px';            
+      void a.offsetHeight;
+      a.style.maxHeight = a.scrollHeight + 'px';
+    }
   });
 
-  // ===== Intersection Observer (no fixed header) =====
+  a.addEventListener('transitionend', (e) => {
+    if (item.classList.contains('active') && e.propertyName === 'max-height') {
+      a.style.maxHeight = 'none';   
+      a.style.overflow = 'visible';
+    }
+  });
+});
+
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.faq-item.active .faq-answer').forEach(a => {
+    a.style.maxHeight = 'none';
+    a.style.overflow = 'visible';
+  });
+});
+
+
+  // ===== Intersection Observer =====
   const io = new IntersectionObserver((entries) => {
     if (suppressIO) return;
 
@@ -232,4 +253,44 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { root: null, threshold: [0, 0.2] });
     topIO.observe(homeSection);
   }
+
+  // ===== Hamburger =====
+const navToggle   = document.getElementById('nav-toggle');
+const hamburger   = document.querySelector('.hamburger');
+const mainNav     = document.getElementById('mobile-menu');
+const navLinksAll = document.querySelectorAll('.main-nav .nav-link');
+
+function updateMenuState() {
+  const open = !!navToggle?.checked;
+  hamburger?.setAttribute('aria-expanded', open ? 'true' : 'false');
+  mainNav?.setAttribute('aria-hidden', open ? 'false' : 'true');
+  document.documentElement.style.overflow = open ? 'hidden' : '';
+}
+
+function closeMenu() {
+  if (navToggle && navToggle.checked) {
+    navToggle.checked = false;
+    updateMenuState();
+  }
+}
+
+navToggle?.addEventListener('change', updateMenuState);
+
+// close after clicking any nav link
+navLinksAll.forEach(a => {
+  a.addEventListener('click', () => {
+    closeMenu();
+  });
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeMenu();
+});
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) closeMenu();
+});
+
+updateMenuState();
+
 });
