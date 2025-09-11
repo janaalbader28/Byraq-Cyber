@@ -20,23 +20,38 @@
 
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a href="#home" class="brand">
-        <img src="img/logo.png" alt="بيرق سايبر" class="brand-logo" />
-        <span class="brand-text">بيرق سايبر</span>
-      </a>
-      <nav class="main-nav" aria-label="التنقل الرئيسي">
-     
-        <!-- underline + glow on active -->
-        <a class="nav-link active" href="#home">الرئيسية</a>
-        <a class="nav-link" href="#services">الخدمات</a>
-        <a class="nav-link" href="#projects">المشاريع</a>
-        <a class="nav-link" href="#about">من نحن</a>
-        <a class="nav-link" href="#contact">تواصل معنا</a>
-      </nav>
-    </div>
-  </header>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="#home" class="brand">
+      <img src="img/logo.png" alt="بيرق سايبر" class="brand-logo" />
+      <span class="brand-text">بيرق سايبر</span>
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
+
+    <!-- hamburger button -->
+    <label for="nav-toggle"
+           class="hamburger"
+           aria-label="فتح/إغلاق القائمة"
+           aria-controls="mobile-menu"
+           aria-expanded="false">
+      <span class="sr-only">القائمة</span>
+      <span class="bar" aria-hidden="true"></span>
+    </label>
+
+    <nav id="mobile-menu" class="main-nav" aria-label="التنقل الرئيسي">
+      <a class="nav-link active" href="#home">الرئيسية</a>
+      <a class="nav-link" href="#services">الخدمات</a>
+      <a class="nav-link" href="#projects">المشاريع</a>
+      <a class="nav-link" href="#about">من نحن</a>
+      <a class="nav-link" href="#contact">تواصل معنا</a>
+    </nav>
+
+    <label for="nav-toggle" class="nav-backdrop" aria-hidden="true"></label>
+  </div>
+</header>
+
+
 
   <main id="home" class="hero">
     <div class="container">
@@ -45,7 +60,8 @@
           بيرق سايبر: حماة المستقبل الرقمي وبناة الثقة المستدامة
         </h1>
         <p class="hero-sub">
-في عصرٍ تتسارع فيه خطوات التحول الرقمي بوتيرةٍ مذهلة، تبرز الحاجة إلى قادةٍ يتبنّون لا يبنون حلولاً فحسب، بل يبنون ثقة ويجمعون بين أيديهم مسارات التقدّم. من هذه الرؤية وُلدت فكرة تأسيس فريق بيرق سايبر ليس فقط كفريق تقني سعودي طموح، بل كَرائد إقليمي وعالمي يمتلك الأدوات والرؤية لتشكيل المستقبل.        </p>
+في عصرٍ تتسارع فيه خطوات التحول الرقمي بوتيرةٍ مذهلة، تبرز الحاجة إلى قادةٍ يتبنّون لا يبنون حلولاً فحسب، بل يبنون ثقة ويجمعون بين أيديهم مسارات التقدّم. من هذه الرؤية وُلدت فكرة تأسيس فريق بيرق سايبر ليس فقط كفريق تقني سعودي طموح، بل كَرائد إقليمي وعالمي يمتلك الأدوات والرؤية لتشكيل المستقبل.       
+ </p>
       </section>
 
       <!-- buttons -->
@@ -70,6 +86,132 @@
   </main>
 
 
+<!-- SERVICES -->
+<section id="services" class="services-section">
+  <div class="container">
+    <h2 class="services-title">خدماتنا</h2>
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><i class="fa-solid fa-desktop"></i></div>
+        <h3 class="service-title">تطوير البرمجيات</h3>
+        <ul class="service-list">
+          <li>تصميم وتطوير المواقع (Web Development)</li>
+          <li>تطوير تطبيقات الهواتف الذكية (iOS & Android)</li>
+          <li>بناء أنظمة مخصصة للشركات (ERP – CRM)</li>
+        </ul>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-icon"><i class="fa-solid fa-globe"></i></div>
+        <h3 class="service-title">الحلول الإلكترونية</h3>
+        <ul class="service-list">
+          <li>منصات تجارة إلكترونية (B2B – B2C)</li>
+          <li>أنظمة الدفع الإلكتروني والربط مع بوابات الدفع</li>
+          <li>أنظمة إدارة المحتوى (CMS)</li>
+        </ul>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3 class="service-title">الأمن السيبراني</h3>
+        <ul class="service-list">
+          <li>اختبار الاختراق (Penetration Testing)</li>
+          <li>الاستشارات الأمنية وحلول الحماية</li>
+          <li>تدريب وتوعية الموظفين على أمن المعلومات</li>
+        </ul>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-icon"><i class="fa-solid fa-chart-simple"></i></div>
+        <h3 class="service-title">الدعم الفني والتحليل</h3>
+        <ul class="service-list">
+          <li>دعم وصيانة مستمرة للأنظمة</li>
+          <li>إعداد تقارير ولوحات تحكم ذكية</li>
+          <li>تحسين الأداء وتجربة المستخدم (UX Optimization)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Strengths  -->
+    <div class="strengths-section strengths-in-services">
+      <div class="strengths-card">
+        <h2 class="strengths-title">نقاط قوتنا</h2>
+        <div class="strengths-grid">
+          <div class="strength-item">
+            <i class="fa-solid fa-users"></i>
+            <p>فريق متخصص بخبرات متعددة المجالات</p>
+          </div>
+          <div class="strength-item">
+            <i class="fa-solid fa-bolt"></i>
+            <p>سرعة في الإنجاز مع الالتزام بالجودة</p>
+          </div>
+          <div class="strength-item">
+            <i class="fa-solid fa-headset"></i>
+            <p>دعم فني متواصل بعد التسليم</p>
+          </div>
+          <div class="strength-item">
+            <i class="fa-solid fa-chart-line"></i>
+            <p>حلول قابلة للتوسع والتطوير المستقبلي</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Workflow -->
+    <div class="workflow-section workflow-in-services">
+      <h2 class="section-title">آلية عملنا</h2>
+      <div class="workflow-timeline-horizontal">
+        <div class="step">
+          <div class="step-circle">1</div>
+          <div class="step-text">
+            <div class="step-title">الاستشارة والتحليل</div>
+            <div class="step-description">فهم احتياجات العميل بدقة</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-circle">2</div>
+          <div class="step-text">
+            <div class="step-title">التصميم والتطوير</div>
+            <div class="step-description">تحويل المتطلبات إلى حلول عملية</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-circle">3</div>
+          <div class="step-text">
+            <div class="step-title">الاختبار والجودة</div>
+            <div class="step-description">ضمان خلو الأنظمة من الأخطاء</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-circle">4</div>
+          <div class="step-text">
+            <div class="step-title">التسليم والدعم</div>
+            <div class="step-description">تسليم المنتج مع دعم ما بعد الإطلاق</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  <section id="projects" class="projects-section">
+  <div class="container">
+    <h2 class="projects-title">المشاريع </h2>
+    <div class="loading">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    </div>
+      <div class="loading-text">أفكار غير تقليدية ومشاريع رهيبة في الطريق… ترقبوا!</div>
+  </div>
+</section>
+
+
+
 
 <!-- About us section -->
 <section id="about" class="about-section">
@@ -78,7 +220,7 @@
     <div class="vision-card">
       <h2 class="vision-title"><span>من نحن:</span></h2>
       <p class="vision-text">
-نحن فريق بيرق سايبر فريق تقني متخصص في تقديم حلول برمجية وأمنية مبتكرة، نعمل على تحويل الأفكار إلى منتجات رقمية عالية الجودة.
+نحن فريق بيرق سايبر، فريق تقني متخصص في تقديم حلول برمجية وأمنية مبتكرة، نعمل على تحويل الأفكار إلى منتجات رقمية عالية الجودة.
 يمتلك فريقنا خبرات متنوعة في تطوير المواقع والتطبيقات، الأمن السيبراني، والحلول التقنية المخصصة، مع التزام كامل بالجودة والالتزام بالمواعيد.
       </p>
     </div>
@@ -100,7 +242,6 @@
     <div class="goals">
     <div class="goal">
         <div class="goal-purple">
-        <!-- Light bulb icon for “رفع الوعي التقني” -->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
@@ -115,7 +256,6 @@
 
     <div class="goal goal-reverse">
         <div class="goal-purple">
-        <!-- Network icon for “بناء مجتمع رقمي متفاعل” -->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
@@ -132,7 +272,6 @@
 
     <div class="goal">
         <div class="goal-purple">
-        <!-- Shield icon for “تعزيز الثقة مع القطاعات” -->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
@@ -218,7 +357,7 @@
 
 <section>
 
-<!-- Team (inside #about) -->
+<!-- Team -->
 <div class="team-in-about">
   <h3 class="team-heading">خبرات الفريق</h3>
 
@@ -416,7 +555,7 @@
 
     </div>
 
-    <!-- أسهم التحكم -->
+    <!-- أسهم  -->
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
   </div>
@@ -425,135 +564,6 @@
 
   </div>
 </section>
-
-
-
-<!-- SERVICES (with strengths + workflow inside) -->
-<section id="services" class="services-section">
-  <div class="container">
-    <h2 class="services-title">خدماتنا</h2>
-    
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon"><i class="fa-solid fa-desktop"></i></div>
-        <h3 class="service-title">تطوير البرمجيات</h3>
-        <ul class="service-list">
-          <li>تصميم وتطوير المواقع (Web Development)</li>
-          <li>تطوير تطبيقات الهواتف الذكية (iOS & Android)</li>
-          <li>بناء أنظمة مخصصة للشركات (ERP – CRM)</li>
-        </ul>
-      </div>
-      
-      <div class="service-card">
-        <div class="service-icon"><i class="fa-solid fa-globe"></i></div>
-        <h3 class="service-title">الحلول الإلكترونية</h3>
-        <ul class="service-list">
-          <li>منصات تجارة إلكترونية (B2B – B2C)</li>
-          <li>أنظمة الدفع الإلكتروني والربط مع بوابات الدفع</li>
-          <li>أنظمة إدارة المحتوى (CMS)</li>
-        </ul>
-      </div>
-      
-      <div class="service-card">
-        <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
-        <h3 class="service-title">الأمن السيبراني</h3>
-        <ul class="service-list">
-          <li>اختبار الاختراق (Penetration Testing)</li>
-          <li>الاستشارات الأمنية وحلول الحماية</li>
-          <li>تدريب وتوعية الموظفين على أمن المعلومات</li>
-        </ul>
-      </div>
-      
-      <div class="service-card">
-        <div class="service-icon"><i class="fa-solid fa-chart-simple"></i></div>
-        <h3 class="service-title">الدعم التقني والتحليل</h3>
-        <ul class="service-list">
-          <li>دعم وصيانة مستمرة للأنظمة</li>
-          <li>إعداد تقارير ولوحات تحكم ذكية</li>
-          <li>تحسين الأداء وتجربة المستخدم (UX Optimization)</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Strengths INSIDE services -->
-    <div class="strengths-section strengths-in-services">
-      <div class="strengths-card">
-        <h2 class="strengths-title">نقاط قوتنا</h2>
-        <div class="strengths-grid">
-          <div class="strength-item">
-            <i class="fa-solid fa-users"></i>
-            <p>فريق متخصص بخبرات متعددة المجالات</p>
-          </div>
-          <div class="strength-item">
-            <i class="fa-solid fa-bolt"></i>
-            <p>سرعة في الإنجاز مع الالتزام بالجودة</p>
-          </div>
-          <div class="strength-item">
-            <i class="fa-solid fa-headset"></i>
-            <p>دعم فني متواصل بعد التسليم</p>
-          </div>
-          <div class="strength-item">
-            <i class="fa-solid fa-chart-line"></i>
-            <p>حلول قابلة للتوسع والتطوير المستقبلي</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Workflow INSIDE services -->
-    <div class="workflow-section workflow-in-services">
-      <h2 class="section-title">آلية عملنا</h2>
-      <div class="workflow-timeline-horizontal">
-        <div class="step">
-          <div class="step-circle">1</div>
-          <div class="step-text">
-            <div class="step-title">الاستشارة والتحليل</div>
-            <div class="step-description">فهم احتياجات العميل بدقة</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-circle">2</div>
-          <div class="step-text">
-            <div class="step-title">التصميم والتطوير</div>
-            <div class="step-description">تحويل المتطلبات إلى حلول عملية</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-circle">3</div>
-          <div class="step-text">
-            <div class="step-title">الاختبار والجودة</div>
-            <div class="step-description">ضمان خلو الأنظمة من الأخطاء</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-circle">4</div>
-          <div class="step-text">
-            <div class="step-title">التسليم والدعم</div>
-            <div class="step-description">تسليم المنتج مع دعم ما بعد الإطلاق</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-  <section id="projects" class="projects-section">
-  <div class="container">
-    <h2 class="projects-title">المشاريع </h2>
-    <div class="loading">
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    </div>
-      <div class="loading-text">أفكار غير تقليدية ومشاريع رهيبة في الطريق… ترقبوا!</div>
-  </div>
-</section>
-
-
-
 
 
   <!-- conclusion -->
