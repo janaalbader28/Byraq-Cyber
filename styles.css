@@ -242,40 +242,6 @@ html:has(#nav-toggle:checked) .to-top{
   justify-content: flex-end; 
 }
 
-.btn-tab {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 0 22px;
-  font-weight: 500;
-  text-decoration: none;
-  border: 1px solid transparent;
-  position: relative;
-  -webkit-clip-path: polygon(0 0, 78% 0, 86% 0%, 100% 30%, 100% 100%, 10% 100%, 0 78%);
-          clip-path: polygon(0 0, 78% 0, 86% 0%, 100% 30%, 100% 100%, 10% 100%, 0 78%);
-  border-radius: 12px;
-  letter-spacing: 0.2px;
-}
-
-
-.btn-primary-tab {
-  color: #0b0b14;
-  background: linear-gradient(180deg, var(--primary), var(--primary-2));
-  box-shadow: var(--glow);
-}
-
-.btn-primary-tab:hover { transform: translateY(-1px); }
-
-.btn-ghost-tab {
-  color: #e6e5ff;
-  background: transparent;
-  border-color: rgba(103,81,220,0.6);
-}
-
-.btn-ghost-tab:hover {
-  background: rgba(94,185,204,0.13);
-}
 
 /*  Stats  */
 
