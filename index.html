@@ -20,23 +20,38 @@
 
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a href="#home" class="brand">
-        <img src="img/logo.png" alt="بيرق سايبر" class="brand-logo" />
-        <span class="brand-text">بيرق سايبر</span>
-      </a>
-      <nav class="main-nav" aria-label="التنقل الرئيسي">
-     
-        <!-- underline + glow on active -->
-        <a class="nav-link active" href="#home">الرئيسية</a>
-        <a class="nav-link" href="#services">الخدمات</a>
-        <a class="nav-link" href="#projects">المشاريع</a>
-        <a class="nav-link" href="#about">من نحن</a>
-        <a class="nav-link" href="#contact">تواصل معنا</a>
-      </nav>
-    </div>
-  </header>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="#home" class="brand">
+      <img src="img/logo.png" alt="بيرق سايبر" class="brand-logo" />
+      <span class="brand-text">بيرق سايبر</span>
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
+
+    <!-- hamburger button -->
+    <label for="nav-toggle"
+           class="hamburger"
+           aria-label="فتح/إغلاق القائمة"
+           aria-controls="mobile-menu"
+           aria-expanded="false">
+      <span class="sr-only">القائمة</span>
+      <span class="bar" aria-hidden="true"></span>
+    </label>
+
+    <nav id="mobile-menu" class="main-nav" aria-label="التنقل الرئيسي">
+      <a class="nav-link active" href="#home">الرئيسية</a>
+      <a class="nav-link" href="#services">الخدمات</a>
+      <a class="nav-link" href="#projects">المشاريع</a>
+      <a class="nav-link" href="#about">من نحن</a>
+      <a class="nav-link" href="#contact">تواصل معنا</a>
+    </nav>
+
+    <label for="nav-toggle" class="nav-backdrop" aria-hidden="true"></label>
+  </div>
+</header>
+
+
 
   <main id="home" class="hero">
     <div class="container">
@@ -45,7 +60,8 @@
           بيرق سايبر: حماة المستقبل الرقمي وبناة الثقة المستدامة
         </h1>
         <p class="hero-sub">
-في عصرٍ تتسارع فيه خطوات التحول الرقمي بوتيرةٍ مذهلة، تبرز الحاجة إلى قادةٍ يتبنّون لا يبنون حلولاً فحسب، بل يبنون ثقة ويجمعون بين أيديهم مسارات التقدّم. من هذه الرؤية وُلدت فكرة تأسيس فريق بيرق سايبر ليس فقط كفريق تقني سعودي طموح، بل كَرائد إقليمي وعالمي يمتلك الأدوات والرؤية لتشكيل المستقبل.        </p>
+في عصرٍ تتسارع فيه خطوات التحول الرقمي بوتيرةٍ مذهلة، تبرز الحاجة إلى قادةٍ يتبنّون لا يبنون حلولاً فحسب، بل يبنون ثقة ويجمعون بين أيديهم مسارات التقدّم. من هذه الرؤية وُلدت فكرة تأسيس فريق بيرق سايبر ليس فقط كفريق تقني سعودي طموح، بل كَرائد إقليمي وعالمي يمتلك الأدوات والرؤية لتشكيل المستقبل.       
+ </p>
       </section>
 
       <!-- buttons -->
@@ -70,343 +86,7 @@
   </main>
 
 
-
-<!-- About us section -->
-<section id="about" class="about-section">
-  <div class="container about-container">
-    <!-- Vision card with angled edges -->
-    <div class="vision-card">
-      <h2 class="vision-title"><span>من نحن:</span></h2>
-      <p class="vision-text">
-نحن فريق بيرق سايبر فريق تقني متخصص في تقديم حلول برمجية وأمنية مبتكرة، نعمل على تحويل الأفكار إلى منتجات رقمية عالية الجودة.
-يمتلك فريقنا خبرات متنوعة في تطوير المواقع والتطبيقات، الأمن السيبراني، والحلول التقنية المخصصة، مع التزام كامل بالجودة والالتزام بالمواعيد.
-      </p>
-    </div>
-
-    <!-- role of technology -->
-    <p class="about-tagline">
-      التكنولوجيا وسيلة للتيسير وليس للتعقيد. نحن نوسع المدارك ونسهل الطريق للمجتمع لمواكبة التقدم العالمي.
-    </p>
-
-    <!-- Mission -->
-    <div class="mission-card">
-      <p class="mission-text">
-        رسالتنا تنبع من إيمان راسخ بأن التكنولوجيا هي وسيلة للتيسير وليس للتعقيد. لذلك، نحن نوسع المدارك ونسهل الطريق للمجتمع لمواكبة التقدم العالمي. نُمكن الأفراد والمؤسسات من خلال حزمة متكاملة من الخدمات في مجالات الأمن السيبراني، البرمجة، والذكاء الاصطناعي، مدعومة بخبرة عميقة ومعرفة متجددة.
-      </p>
-    </div>
-
-    <!-- Goals -->
-    <h3 class="goals-heading">أهدافنا الاستراتيجية: بناء نحو مستقبل تفاعلي وآمن</h3>
-    <div class="goals">
-    <div class="goal">
-        <div class="goal-purple">
-        <!-- Light bulb icon for “رفع الوعي التقني” -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7" />
-            <path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3" />
-            <path d="M9.7 17l4.6 0" />
-        </svg>
-        </div>
-        <div class="goal-text">رفع الوعي التقني</div>
-    </div>
-
-    <div class="goal goal-reverse">
-        <div class="goal-purple">
-        <!-- Network icon for “بناء مجتمع رقمي متفاعل” -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="5" r="2" />
-            <circle cx="6"  cy="17" r="2" />
-            <circle cx="18" cy="17" r="2" />
-            <line x1="12" y1="5"  x2="6"  y2="17" />
-            <line x1="12" y1="5"  x2="18" y2="17" />
-            <line x1="6"  y1="17" x2="18" y2="17" />
-        </svg>
-        </div>
-        <div class="goal-text">بناء مجتمع رقمي متفاعل</div>
-    </div>
-
-    <div class="goal">
-        <div class="goal-purple">
-        <!-- Shield icon for “تعزيز الثقة مع القطاعات” -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2l-8 3v5c0 6 4 9.5 8 12 4-2.5 8-6 8-12V5l-8-3z" />
-        </svg>
-        </div>
-        <div class="goal-text">تعزيز الثقة مع القطاعات</div>
-    </div>
-    </div>
-
-
-    <!-- Capabilities -->
-<div class="capabilities-in-about">
-  <h2 class="caps-title">قدرات الفريق التقنية: الإبداع خلف المشاريع</h2>
-  <p class="caps-sub">
-    ما يميز بيرق سايبر ليس فقط المشاريع التي نطلقها، بل المهارات والقدرات الأساسية
-    التي تمكننا من التنفيذ بتميّز.
-  </p>
-
-  <div class="cap-grid">
-  <article class="cap-card cap-ai">
-    <div class="cap-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 3l7 4-7 4-7-4 7-4zM5 11l7 4 7-4M5 11v6l7 4 7-4v-6"/>
-      </svg>
-    </div>
-    <h3>دمج الذكاء الاصطناعي وتحليل البيانات</h3>
-    <ul>
-      <li>تحليل ذكي : استخدام أدوات مثل GPT و BERT لتحويل النصوص الطويلة إلى ملخصات دقيقة.</li>
-      <li>تحليل المصادر المفتوحة: (OSINT) لدعم الأمن و التحقيقات.</li>
-      <li>تعزيز الإنتاجية: أتمتة المهام المعقدة و تقديم رؤى لصناع القرار.</li>
-      <li>اتخاذ القرار: أدوات قوية لتحليل البيانات و تقديم معلومات دقيقة.</li>
-    </ul>
-  </article>
-
-  <article class="cap-card cap-sec">
-    <div class="cap-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 3l7 4-7 4-7-4 7-4zM5 11l7 4 7-4M5 11v6l7 4 7-4v-6"/>
-      </svg>
-    </div>
-    <h3>التميّز في الأمن السيبراني والحماية</h3>
-    <ul>
-      <li>تأمين التطبيقات: حماية من هجماتSQL injection و XSS و غيرها.</li>
-      <li>حماية البيانات: استخدام بروتوكولات تشفير حديثة (HTTPS)ونسخ احتياطية منتظمة.</li>
-      <li>الامتثال و الخصوصية: توافق مع القوانين المحلية و العالمية لحماية البيانات.</li>
-      <li>إدارة الصلاحيات الدقيقة: أنظمة تحكم دقيقة تضمن الوصول الآمن.</li>
-    </ul>
-  </article>
-
-  <article class="cap-card cap-ux">
-    <div class="cap-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 3l7 4-7 4-7-4 7-4zM5 11l7 4 7-4M5 11v6l7 4 7-4v-6"/>
-      </svg>
-    </div>
-    <h3>الابتكار في تجربة المستخدم (UX/UI Innovation)</h3>
-    <ul>
-      <li>هوية بصرية موحدة: ألوان و خطوط متناسقة تعكس هوية العلامة التجارية.</li>
-      <li>واجهات متجاوبة: تعمل بسلاسة على الهواتف و الشاشات الكبيرة.</li>
-      <li>تبسيط العمليات: تحويل المهام المعقدة(مثل التسجيل و الشراء)إلى خطوات بسيطة.</li>
-      <li>تخصيص التجارب: حسب أدوار المستخدمين (مدير/موظف)لزيادة الفعالية.</li>
-    </ul>
-  </article>
-
-  <article class="cap-card cap-build">
-    <div class="cap-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 3l7 4-7 4-7-4 7-4zM5 11l7 4 7-4M5 11v6l7 4 7-4v-6"/>
-      </svg>
-    </div>
-    <h3>قدرة البناء والتطوير القوي والقابل للتوسع</h3>
-    <ul>
-      <li>أنظمة قوية تتحمل الضغط و النمو الكبير في عدد المستخدمين.</li>
-      <li>المرونة و الاستدامة بنية رقمية قابلة للتطوير و الصيانة.</li>
-      <li>التوثيق الشامل: نقل المعرفة بسلاسة و ضمان استمرارية الأعمال.</li>
-      <li>أحدث التقنيات: تطوير واجهات خلفية بأدوات حديثة لحلول موثقة و عالية الأداء.</li>
-    </ul>
-  </article>
-</div>
-
-</div>
-
-<!-- Team (inside #about) -->
-<div class="team-in-about">
-  <h3 class="team-heading">أعضاء فريق بيرق</h3>
-
-  <div class="swiper team-swiper">
-    <div class="swiper-wrapper">
-
-    <!-- بطاقة ليان -->
-    <div class="swiper-slide team-card">
-      <h4>ليان محمد الحربي</h4>
-      <span class="role">مطورة ذكاء اصطناعي وUI/UX</span>
-      <ul class="team-details">
-        <li>طالبة علوم حاسب، جامعة أم القرى، معدل 3.76/4</li>
-        <li>شارك في هاكاثونات وحصل على مراكز أولى</li>
-        <li>تتقن Python, Java, SQL, Linux, Git</li>
-        <li>إجادة تامة للغة الإنجليزية</li>
-      </ul>
-    </div>
-
-    <!-- بطاقة جنى -->
-    <div class="swiper-slide team-card">
-      <h4>جنى عبدالله البدر</h4>
-      <span class="role">إدارة مشاريع وذكاء اصطناعي</span>
-      <ul class="team-details">
-        <li>خريجة علوم حاسب من جامعة الإمام عبدالرحمن بن فيصل</li>
-        <li>خبرة عملية في الذكاء الاصطناعي، Full Stack، وتحليل البيانات</li>
-        <li>مشاريع تشمل تطبيقات ويب وموبايل وحلول ذكاء اصطناعي</li>
-      </ul>
-    </div>
-
-    <!-- بطاقة شهد -->
-    <div class="swiper-slide team-card">
-      <h4>شهد أحمد السمراني</h4>
-      <span class="role">باحثة AI وشبكات</span>
-      <ul class="team-details">
-        <li>طالبة علوم حاسب، جامعة الملك عبدالعزيز وخريجة برنامج موهبة</li>
-        <li>تدربت في أرامكو وخبرتها في الذكاء الاصطناعي والهندسة الشبكية</li>
-        <li>مشاريع: Safir AI Chatbot، الرسوميات الحاسوبية، هندسة البرمجيات</li>
-        <li>تدريبات مكثفة في Azure AI و CompTIA</li>
-      </ul>
-    </div>
-
-    <!-- بطاقة رنيم -->
-    <div class="swiper-slide team-card">
-      <h4>رنيم فهد الشهري</h4>
-      <span class="role">أمن سيبراني وCloud</span>
-      <ul class="team-details">
-        <li>خريجة نظم معلومات، جامعة الملك خالد، معدل 4.85/5</li>
-        <li>تدريبات متقدمة في Cloud Computing و SOC L1 & L2</li>
-        <li>قاد فريق CTF في REQAM TECH</li>
-        <li>مشاريع: تحليل برمجيات خبيثة بالذكاء الاصطناعي، Azure Chatbot، بنية تحتية على AWS</li>
-      </ul>
-    </div>
-
-    <!-- بطاقة فاطمة -->
-    <div class="swiper-slide team-card">
-      <h4>فاطمة محمد الحجوري</h4>
-      <span class="role">رائدة الأمن السيبراني</span>
-      <ul class="team-details">
-        <li>مؤسِّسة فريق بيرق سايبر، تدرس دبلوم إدارة أنظمة الشبكات</li>
-        <li>مشاريع: تطوير أنظمة أمنية ومحاكاة الشبكات</li>
-        <li>حاصلة على شهادات متعددة من Cisco وAWS</li>
-        <li>تتحدث العربية والإنجليزية بطلاقة والتركية بمستوى متوسط</li>
-      </ul>
-    </div>
-
-    <!-- بطاقة صالح -->
-    <div class="swiper-slide team-card">
-      <h4>صالح العادل</h4>
-      <span class="role">خبير اختراق وأمن سيبراني</span>
-      <ul class="team-details">
-        <li>متخصص في الأمن السيبراني واختبار الاختراق</li>
-        <li>عمل كمهندس بحث وتطوير وقاد فرق تطوير أنظمة آمنة</li>
-        <li>شهادات: eJPTv2، ويستعد لـ eWAPT وOSCP</li>
-        <li>المؤسس المشارك لفريق بيرق سايبر</li>
-      </ul>
-    </div>
-
-    <!-- بطاقة ندى -->
-    <div class="swiper-slide team-card">
-      <h4>ندى بكر محمد الجهني</h4>
-      <span class="role">مبرمجة وتطوير ويب</span>
-      <ul class="team-details">
-        <li>دبلوم برمجة وتطوير الويب، الكلية التقنية الرقمية بجدة</li>
-        <li>مشاريع: HTML, CSS, PHP, SQL</li>
-        <li>درست الأمن السيبراني والحوسبة السحابية</li>
-      </ul>
-    </div>
-
-    <!-- بطاقة طيف -->
-    <div class="swiper-slide team-card">
-      <h4>طيف عبدالله الثقفي</h4>
-      <span class="role">صانعة محتوى إعلامي</span>
-      <ul class="team-details">
-        <li>طالبة إعلام رقمي، جامعة جدة</li>
-        <li>متخصصة في صناعة المحتوى والتحرير والتصوير</li>
-        <li>حصلت على المركز الثالث في هاكاثون تميّز</li>
-      </ul>
-    </div>
-
-    <!-- بطاقة إبراهيم -->
-    <div class="swiper-slide team-card">
-      <h4>إبراهيم عبدالمحسن علي عبدالرحيم</h4>
-      <span class="role">مسؤول محتوى وتسويق</span>
-      <ul class="team-details">
-        <li>خريج تقنية معلومات، الجامعة السعودية الإلكترونية</li>
-        <li>خبرة في المبيعات والتسويق الرقمي وإدارة المحتوى</li>
-        <li>عمل كمسؤول إعلامي في مؤسسة كفك ومسوق رقمي في تكافل العربية</li>
-      </ul>
-    </div>
-
-    <!-- بطاقة عبدالمحسن سامي -->
-    <div class="swiper-slide team-card">
-      <h4>عبدالمحسن سامي السليم</h4>
-      <span class="role">محلل بيانات وPower BI</span>
-      <ul class="team-details">
-        <li>خريج علوم حاسب، جامعة الإمام محمد بن سعود، معدل 4.32</li>
-        <li>متخصص في Power BI و SQL</li>
-        <li>تحويل البيانات إلى رؤى قابلة للتنفيذ لدعم اتخاذ القرار</li>
-      </ul>
-    </div>
-
-    <!-- بطاقة ليان السرح -->
-    <div class="swiper-slide team-card">
-      <h4>ليان السرح</h4>
-      <span class="role">مهندسة حاسب وشبكات</span>
-      <ul class="team-details">
-        <li>طالبة هندسة حاسب وشبكات، جامعة الجوف</li>
-        <li>تطوير تطبيقات Java وأساسيات الشبكات</li>
-      </ul>
-    </div>
-
-    <!-- بطاقة هند -->
-    <div class="swiper-slide team-card">
-      <h4>هند عدي الخالدي</h4>
-      <span class="role">مطورة C++ و Python</span>
-      <ul class="team-details">
-        <li>طالبة هندسة حاسب، جامعة الطائف</li>
-        <li>تحليل البيانات وعضو فعال في IEEE</li>
-        <li>مبادرات تقنية مثل NewTech</li>
-      </ul>
-    </div>
-
-    <!-- بطاقة سعد -->
-    <div class="swiper-slide team-card">
-      <h4>سعد رضوان سعد الثنيان</h4>
-      <span class="role">مطور أنظمة وUX</span>
-      <ul class="team-details">
-        <li>باحث في علوم الحاسب</li>
-        <li>تطوير تطبيقات مثل Kashkhtak و Weel Point</li>
-        <li>متمكن في تصميم واجهات المستخدم وUX</li>
-        <li>يجيد العربية والإنجليزية</li>
-      </ul>
-    </div>
-
-    <!-- بطاقة مضاوي -->
-    <div class="swiper-slide team-card">
-      <h4>مضاوي السرح</h4>
-      <span class="role">مطورة شبكات وأنظمة</span>
-      <ul class="team-details">
-        <li>طالبة علوم حاسب</li>
-        <li>مجيدة في تطبيقات Java وتصميم واجهات وتطوير المحتوى</li>
-        <li>شاركت في مسابقات جامعية وحصلت على شهادات تقدير</li>
-      </ul>
-    </div>
-
-    <!-- بطاقة فريال -->
-    <div class="swiper-slide team-card">
-      <h4>فريال ابراهيم الغماري</h4>
-      <span class="role">مطور برمجيات وذكاء اصطناعي</span>
-      <ul class="team-details">
-      <li>خبرة في Python وFlask وFastAPI</li>
-      <li>تطوير أنظمة ذكاء اصطناعي وتحليل نصوص</li>
-      <li>تصور البيانات باستخدام Power BI وMatplotlib</li>
-      </ul>
-    </div>
-
-    </div>
-
-    <!-- أسهم التحكم -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </div>
-</div>
-
-  </div>
-</section>
-
-
-
-<!-- SERVICES (with strengths + workflow inside) -->
+<!-- SERVICES -->
 <section id="services" class="services-section">
   <div class="container">
     <h2 class="services-title">خدماتنا</h2>
@@ -444,7 +124,7 @@
       
       <div class="service-card">
         <div class="service-icon"><i class="fa-solid fa-chart-simple"></i></div>
-        <h3 class="service-title">الدعم التقني التحليل</h3>
+        <h3 class="service-title">الدعم الفني والتحليل</h3>
         <ul class="service-list">
           <li>دعم وصيانة مستمرة للأنظمة</li>
           <li>إعداد تقارير ولوحات تحكم ذكية</li>
@@ -453,7 +133,7 @@
       </div>
     </div>
 
-    <!-- Strengths INSIDE services -->
+    <!-- Strengths  -->
     <div class="strengths-section strengths-in-services">
       <div class="strengths-card">
         <h2 class="strengths-title">نقاط قوتنا</h2>
@@ -478,7 +158,7 @@
       </div>
     </div>
 
-    <!-- Workflow INSIDE services -->
+    <!-- Workflow -->
     <div class="workflow-section workflow-in-services">
       <h2 class="section-title">آلية عملنا</h2>
       <div class="workflow-timeline-horizontal">
@@ -532,6 +212,357 @@
 
 
 
+
+<!-- About us section -->
+<section id="about" class="about-section">
+  <div class="container about-container">
+    <!-- Vision card with angled edges -->
+    <div class="vision-card">
+      <h2 class="vision-title"><span>من نحن:</span></h2>
+      <p class="vision-text">
+نحن فريق بيرق سايبر، فريق تقني متخصص في تقديم حلول برمجية وأمنية مبتكرة، نعمل على تحويل الأفكار إلى منتجات رقمية عالية الجودة.
+يمتلك فريقنا خبرات متنوعة في تطوير المواقع والتطبيقات، الأمن السيبراني، والحلول التقنية المخصصة، مع التزام كامل بالجودة والالتزام بالمواعيد.
+      </p>
+    </div>
+
+    <!-- role of technology -->
+    <p class="about-tagline">
+      التكنولوجيا وسيلة للتيسير وليس للتعقيد. نحن نوسع المدارك ونسهل الطريق للمجتمع لمواكبة التقدم العالمي.
+    </p>
+
+    <!-- Mission -->
+    <div class="mission-card">
+      <p class="mission-text">
+        رسالتنا تنبع من إيمان راسخ بأن التكنولوجيا هي وسيلة للتيسير وليس للتعقيد. لذلك، نحن نوسع المدارك ونسهل الطريق للمجتمع لمواكبة التقدم العالمي. نُمكن الأفراد والمؤسسات من خلال حزمة متكاملة من الخدمات في مجالات الأمن السيبراني، البرمجة، والذكاء الاصطناعي، مدعومة بخبرة عميقة ومعرفة متجددة.
+      </p>
+    </div>
+
+    <!-- Goals -->
+    <h3 class="goals-heading">أهدافنا الاستراتيجية: بناء نحو مستقبل تفاعلي وآمن</h3>
+    <div class="goals">
+    <div class="goal">
+        <div class="goal-purple">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7" />
+            <path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3" />
+            <path d="M9.7 17l4.6 0" />
+        </svg>
+        </div>
+        <div class="goal-text">رفع الوعي التقني</div>
+    </div>
+
+    <div class="goal goal-reverse">
+        <div class="goal-purple">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="5" r="2" />
+            <circle cx="6"  cy="17" r="2" />
+            <circle cx="18" cy="17" r="2" />
+            <line x1="12" y1="5"  x2="6"  y2="17" />
+            <line x1="12" y1="5"  x2="18" y2="17" />
+            <line x1="6"  y1="17" x2="18" y2="17" />
+        </svg>
+        </div>
+        <div class="goal-text">بناء مجتمع رقمي متفاعل</div>
+    </div>
+
+    <div class="goal">
+        <div class="goal-purple">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l-8 3v5c0 6 4 9.5 8 12 4-2.5 8-6 8-12V5l-8-3z" />
+        </svg>
+        </div>
+        <div class="goal-text2">تعزيز الثقة مع القطاعات</div>
+    </div>
+    </div>
+
+
+<!-- Capabilities -->
+<div class="capabilities-in-about">
+  <h2 class="caps-title">قدرات الفريق التقنية: الإبداع خلف المشاريع</h2>
+  <p class="caps-sub">
+    ما يميز بيرق سايبر ليس فقط المشاريع التي نطلقها، بل المهارات والقدرات الأساسية
+    التي تمكننا من التنفيذ بتميّز.
+  </p>
+
+  <div class="cap-grid">
+    <article class="cap-card cap-ai">
+      <div class="cap-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l7 4-7 4-7-4 7-4zM5 11l7 4 7-4M5 11v6l7 4 7-4v-6"/>
+        </svg>
+      </div>
+      <h3>دمج الذكاء الاصطناعي وتحليل البيانات</h3>
+      <ul>
+        <li>تحليل ذكي : استخدام أدوات مثل GPT و BERT لتحويل النصوص الطويلة إلى ملخصات دقيقة.</li>
+        <li>تحليل المصادر المفتوحة: (OSINT) لدعم الأمن و التحقيقات.</li>
+        <li>تعزيز الإنتاجية: أتمتة المهام المعقدة و تقديم رؤى لصناع القرار.</li>
+        <li>اتخاذ القرار: أدوات قوية لتحليل البيانات و تقديم معلومات دقيقة.</li>
+      </ul>
+    </article>
+
+    <article class="cap-card cap-sec">
+      <div class="cap-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l7 4-7 4-7-4 7-4zM5 11l7 4 7-4M5 11v6l7 4 7-4v-6"/>
+        </svg>
+      </div>
+      <h3>التميّز في الأمن السيبراني والحماية</h3>
+      <ul>
+        <li>تأمين التطبيقات: حماية من هجمات SQL injection و XSS و غيرها.</li>
+        <li>حماية البيانات: استخدام بروتوكولات تشفير حديثة (HTTPS) ونسخ احتياطية منتظمة.</li>
+        <li>الامتثال و الخصوصية: توافق مع القوانين المحلية و العالمية لحماية البيانات.</li>
+        <li>إدارة الصلاحيات الدقيقة: أنظمة تحكم دقيقة تضمن الوصول الآمن.</li>
+      </ul>
+    </article>
+
+    <article class="cap-card cap-ux">
+      <div class="cap-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l7 4-7 4-7-4 7-4zM5 11l7 4 7-4M5 11v6l7 4 7-4v-6"/>
+        </svg>
+      </div>
+      <h3>الابتكار في تجربة المستخدم (UX/UI Innovation)</h3>
+      <ul>
+        <li>هوية بصرية موحدة: ألوان و خطوط متناسقة تعكس هوية العلامة التجارية.</li>
+        <li>واجهات متجاوبة: تعمل بسلاسة على الهواتف و الشاشات الكبيرة.</li>
+        <li>تبسيط العمليات: تحويل المهام المعقدة (مثل التسجيل و الشراء) إلى خطوات بسيطة.</li>
+        <li>تخصيص التجارب: حسب أدوار المستخدمين (مدير/موظف) لزيادة الفعالية.</li>
+      </ul>
+    </article>
+
+    <article class="cap-card cap-build">
+      <div class="cap-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l7 4-7 4-7-4 7-4zM5 11l7 4 7-4M5 11v6l7 4 7-4v-6"/>
+        </svg>
+      </div>
+      <h3>قدرة البناء والتطوير القوي والقابل للتوسع</h3>
+      <ul>
+        <li>أنظمة قوية تتحمل الضغط و النمو الكبير في عدد المستخدمين.</li>
+        <li>المرونة و الاستدامة: بنية رقمية قابلة للتطوير و الصيانة.</li>
+        <li>التوثيق الشامل: نقل المعرفة بسلاسة و ضمان استمرارية الأعمال.</li>
+        <li>أحدث التقنيات: تطوير واجهات خلفية بأدوات حديثة لحلول موثقة و عالية الأداء.</li>
+      </ul>
+    </article>
+  </div>
+</div>
+
+<section>
+
+<!-- Team -->
+<div class="team-in-about">
+  <h3 class="team-heading">خبرات الفريق</h3>
+
+  <div class="swiper team-swiper">
+    <div class="swiper-wrapper">
+
+      <!-- بطاقة مشروع 1 -->
+      <div class="swiper-slide team-card">
+        <h4>خادم ويب آمن</h4>
+        <span class="role">تطوير واستضافة</span>
+        <ul class="team-details">
+          <li>تصميم واستضافة افتراضية متقدمة باستخدام Apache مع بروتوكولات الأمان.</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 2 -->
+      <div class="swiper-slide team-card">
+        <h4>شبكة محاكاة متكاملة</h4>
+        <span class="role">محاكاة الشبكات</span>
+        <ul class="team-details">
+          <li>بيئة Packet Tracer متقدمة تشمل Routing, Switching, VPNs, VLANs.</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 3 -->
+      <div class="swiper-slide team-card">
+        <h4>معمل الأمن السيبراني</h4>
+        <span class="role">اختبار الاختراق</span>
+        <ul class="team-details">
+          <li>إدارة أنظمة Kali Linux وأدوات اختبار الاختراق.</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 4 -->
+      <div class="swiper-slide team-card">
+        <h4>برنامج فلكي (Astronomical Schedules Program)</h4>
+        <span class="role">تطوير بلغة Java</span>
+        <ul class="team-details">
+          <li>تطوير برنامج عملي بلغة Java يعرض الجداول الفلكية والمعلومات المتعلقة بالفضاء.</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 5 -->
+      <div class="swiper-slide team-card">
+        <h4>Kashkhtak – Smart Wardrobe Application</h4>
+        <span class="role">تطبيق ذكي</span>
+        <ul class="team-details">
+          <li>تطبيق ذكي لإدارة الملابس.</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 6 -->
+      <div class="swiper-slide team-card">
+        <h4>Weel Point – Health Appointment Booking App</h4>
+        <span class="role">تطبيق مواعيد صحية</span>
+        <ul class="team-details">
+          <li>تطبيق لحجز المواعيد الطبية.</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 7 -->
+      <div class="swiper-slide team-card">
+        <h4>Diagnosis of Autism Spectrum Disorder (AutismLens)</h4>
+        <span class="role">AI Model</span>
+        <ul class="team-details">
+          <li>نموذج ConvNeXt للتصنيف الدقيق لاضطراب طيف التوحد باستخدام صور الوجه (92% دقة).</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 8 -->
+      <div class="swiper-slide team-card">
+        <h4>Educational Mobile Application (LearnSphere)</h4>
+        <span class="role">تطبيق تعليمي</span>
+        <ul class="team-details">
+          <li>تطبيق للأندرويد (Java) والـ iOS (Swift) لتقديم دورات في مجالات تقنية.</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 9 -->
+      <div class="swiper-slide team-card">
+        <h4>ViT-Based Waste Classification System</h4>
+        <span class="role">نموذج AI</span>
+        <ul class="team-details">
+          <li>نموذج Vision Transformer لتصنيف صور النفايات (95% دقة).</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 10 -->
+      <div class="swiper-slide team-card">
+        <h4>Sheep Classification Challenge — Kaggle</h4>
+        <span class="role">مسابقة AI</span>
+        <ul class="team-details">
+          <li>مسابقة لتصنيف صور الأغنام باستخدام نماذج الذكاء الاصطناعي.</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 11 -->
+      <div class="swiper-slide team-card">
+        <h4>Data Analysis of Cooperative Societies — Kafaat Competition</h4>
+        <span class="role">تحليل بيانات</span>
+        <ul class="team-details">
+          <li>تحليل بيانات الجمعيات التعاونية السعودية باستخدام Python وvisualizations.</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 12 -->
+      <div class="swiper-slide team-card">
+        <h4>Cure Well Pharmacy App – Full Stack Java Project</h4>
+        <span class="role">تطبيق صيدلية</span>
+        <ul class="team-details">
+          <li>تطبيق صيدلية متكامل باستخدام Java, JavaFX, MySQL مع UML وMVC.</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 13 -->
+      <div class="swiper-slide team-card">
+        <h4>Secure Message Exchange using Java</h4>
+        <span class="role">تواصل آمن</span>
+        <ul class="team-details">
+          <li>تطبيق Java client-server لتبادل الرسائل المشفرة (RSA, Diffie-Hellman, Caesar, Simplified DES).</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 14 -->
+      <div class="swiper-slide team-card">
+        <h4>Interactive Chatbot Interface (HTML, CSS, JavaScript)</h4>
+        <span class="role">واجهة محادثة</span>
+        <ul class="team-details">
+          <li>تصميم واجهة محادثة تفاعلية تحاكي الذكاء الاصطناعي بالـ web.</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 15 -->
+      <div class="swiper-slide team-card">
+        <h4>Client-Server Encryption Project (Java, JavaFX)</h4>
+        <span class="role">نظام تشفير</span>
+        <ul class="team-details">
+          <li>نظام تواصل آمن بتشفير وتبادل بيانات في الوقت الحقيقي.</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 16 -->
+      <div class="swiper-slide team-card">
+        <h4>Malware Analysis using AI</h4>
+        <span class="role">تحليل برمجيات</span>
+        <ul class="team-details">
+          <li>نموذج ML باستخدام Scikit-learn لتحليل البرمجيات الخبيثة (79% دقة).</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 17 -->
+      <div class="swiper-slide team-card">
+        <h4>Azure Chatbot App</h4>
+        <span class="role">تطبيق ويب</span>
+        <ul class="team-details">
+          <li>تطبيق ويب قابل للتوسع على Azure باستخدام Terraform, GitHub Actions, RAG-based AI.</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 18 -->
+      <div class="swiper-slide team-card">
+        <h4>AWS Scalable Infrastructure Project</h4>
+        <span class="role">بنية تحتية سحابية</span>
+        <ul class="team-details">
+          <li>تصميم بنية تحتية متوافقة مع AWS Well-Architected Framework.</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 19 -->
+      <div class="swiper-slide team-card">
+        <h4>ASP.NET Job Application System</h4>
+        <span class="role">نظام توظيف</span>
+        <ul class="team-details">
+          <li>نظام توظيف آمن وفعّال مطور في IAU University.</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 20 -->
+      <div class="swiper-slide team-card">
+        <h4>Diagnosis System & Secure Deployment (Medical Project)</h4>
+        <span class="role">مشروع طبي</span>
+        <ul class="team-details">
+          <li>مشروع معتمد طبياً يتميز بالأمان والفعالية.</li>
+        </ul>
+      </div>
+
+      <!-- بطاقة مشروع 21 -->
+      <div class="swiper-slide team-card">
+        <h4>AI Waste Classification (Bootcamp Project)</h4>
+        <span class="role">AI Training</span>
+        <ul class="team-details">
+          <li>جزء من تدريب Smart Cities وAI.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- أسهم  -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</div>
+
+
+  </div>
+</section>
 
 
   <!-- conclusion -->
@@ -588,14 +619,15 @@
         </span>
       </a>
 
-        <!-- GitHub -->
-        <a href="" target="_blank" rel="noopener" class="contact-link" aria-label="تابعنا على GitHub">
-          <i class="fa-brands fa-github"></i>
-          <span>
-            <strong>GitHub</strong>
-            <small>قريبا...</small>
-          </span>
-        </a>
+ <!-- GitHub -->
+<a href="https://github.com/bayraqcyber" target="_blank" rel="noopener" class="contact-link" aria-label="تابعنا على GitHub">
+  <i class="fa-brands fa-github"></i>
+  <span>
+    <strong>GitHub</strong>
+    <small>@BayraqCyber</small>
+  </span>
+</a>
+
 
 
       </div>
