@@ -66,9 +66,9 @@ nav{position:relative; z-index:1000}
 
 /* hamburger button */
 .hamburger{
-  display:none; position:relative; width:30px; height:26px; cursor:pointer;
+  display:none; position:relative; width:25px; height:26px; cursor:pointer;
   order:3; z-index:1300; 
- 
+ margin-top: 10px;
 }
 .hamburger .bar,
 .hamburger::before,
@@ -533,6 +533,7 @@ section[id] { scroll-margin-top: 90px; }
     0% 100%,
     0% var(--cut-size)
   );
+  align-content: center;
 }
 .goal:hover {
   transform: translateY(-6px) scale(1.02);
@@ -558,7 +559,7 @@ section[id] { scroll-margin-top: 90px; }
   stroke: var(--ink);   
 }
 
-.goal-text {
+.goal-text, .goal-text2 {
   flex: 0 0 75%;
   background: linear-gradient(
     180deg,
@@ -568,7 +569,7 @@ section[id] { scroll-margin-top: 90px; }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px 20px;
+  padding: 16px 10px;
   font-weight: 500;
   font-size: clamp(16px, 1vw + 12px, 20px);
   line-height: 1.4;
@@ -595,6 +596,21 @@ section[id] { scroll-margin-top: 90px; }
   margin: 0 auto 24px;                     
   color: var(--ink);               
 }
+@media (max-width: 900px) {
+  .goal-text {
+    font-size: clamp(14px, 2vw, 16px);
+    line-height: 1.3;
+  }
+
+   .goal-text2 {
+    font-size: clamp(14px, 2vw, 16px);
+    line-height: 1.3;
+    padding-inline-end: 40px; /* مسافة من جهة اليمين في حالة RTL */
+  }
+}
+
+
+
 
 /* ===== Capabilities (inside #about) ===== */
 .capabilities-in-about{
@@ -1140,20 +1156,11 @@ section[id] { scroll-margin-top: 90px; }
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    margin-right: 20px;
   }
 
  .workflow-timeline-horizontal::before{
-    content:"";
-    position:absolute;
-    top:0;
-    bottom:0; 
-    inset-inline-start: var(--wf-line-x); 
-    width:4px;
-    background: linear-gradient(180deg, var(--primary), var(--primary-2));
-    border-radius:4px;
-    z-index:1;
-    height: 100%;
-
+      display: none;
   }
   .step {
     flex-direction: row;
@@ -1197,7 +1204,7 @@ section[id] { scroll-margin-top: 90px; }
 
   .workflow-timeline-horizontal .step-circle{
     position:absolute;
-    top:80%;
+    top:50%;
     inset-inline-start: var(--wf-line-x); 
     width: var(--wf-circle);
     height: var(--wf-circle);
@@ -1214,7 +1221,10 @@ section[id] { scroll-margin-top: 90px; }
 
   .workflow-timeline-horizontal .step-circle::after{ display:none; }
   .workflow-timeline-horizontal .step-circle,
-  .workflow-timeline-horizontal .step{ margin-right:0; }
+  .workflow-timeline-horizontal .step
+  { 
+    margin-right:0; 
+  }
 }
 
 
@@ -1402,30 +1412,26 @@ section[id] { scroll-margin-top: 90px; }
   transform: rotate(180deg);
 }
 
-/* Answer */
-.faq-answer {
+
+.faq-answer{
   max-height: 0;
-  padding: 0 30px;
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #dcdcff;
   overflow: hidden;
-  transition: all 0.4s ease;
-  text-align: right;      
-  direction: rtl;      
+  transition: max-height 0.45s ease, padding 0.45s ease;
+  padding: 0 30px;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  text-align: right;
+  direction: rtl;
 }
 
-/* Active answer */
-.faq-item.active .faq-answer {
-  max-height: none;
-  padding: 20px 40px; 
-  margin-bottom: 20px; 
+.faq-item.active .faq-answer{
+  padding: 20px 40px;
   background: rgba(18,22,40,0.6);
   border-top: 1px solid #6c5ce7;
   border-radius: 0 0 16px 16px;
-  text-align: right;   
-  direction: rtl;      
 }
+
 
 .faq-contact-link {
   color: #405aeb;
