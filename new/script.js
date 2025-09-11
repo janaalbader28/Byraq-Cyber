@@ -1,6 +1,33 @@
 
-document.addEventListener('DOMContentLoaded', () => {
-  // ===== Smooth Scroll + Immediate Active =====
+const teamSwiper = new Swiper('.team-swiper', {
+  slidesPerView: 3,
+  spaceBetween: 25,
+  loop: true,
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  autoplay: {
+    delay: 10000, // كل 10 ثواني
+    disableOnInteraction: false,
+  },
+  breakpoints: {
+    0: { slidesPerView: 1 },
+    768: { slidesPerView: 2 },
+    1024: { slidesPerView: 3 }
+  }
+});
+
+
+// ===== Open a specific PDF in a new tab =====
+const PDF_PATH = 'docs/profile.pdf';
+document.getElementById("downloadPDF")?.addEventListener("click", function (e) {
+  e.preventDefault();
+  window.open(PDF_PATH, "_blank", "noopener");
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // ===== Smooth Scroll + Immediate Active (Option 1) =====
   const links = document.querySelectorAll('.main-nav .nav-link');
 
   function setActiveByHash(hash) {
@@ -10,16 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
   let suppressIO = false;
   let scrollStopTimer = null;
 
-  function armScrollStopWatcher() {
+  function armScrollStopWatcher(){
     window.addEventListener('scroll', onScrollDuringSmooth, { passive: true });
     onScrollDuringSmooth();
   }
 
-  function onScrollDuringSmooth() {
+  function onScrollDuringSmooth(){
     clearTimeout(scrollStopTimer);
     scrollStopTimer = setTimeout(() => {
       suppressIO = false;
-      window.removeEventListener('scroll', onScrollDuringSmooth);
+      window.removeEventListener('scroll', onScrollDuringSmooth, { passive: true });
     }, 180);
   }
 
@@ -38,11 +65,60 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  function equalizeTeamCards() {
+    const slides = document.querySelectorAll('.team-card');
+    let maxHeight = 0;
+    slides.forEach(card => {
+      card.style.height = 'auto';
+      const h = card.offsetHeight;
+      if (h > maxHeight) maxHeight = h;
+    });
+    slides.forEach(card => {
+      card.style.height = maxHeight + 'px';
+    });
+  }
+  window.addEventListener('load', equalizeTeamCards);
+  window.addEventListener('resize', equalizeTeamCards);
+
   const sections = [...links]
     .map(a => document.querySelector(a.getAttribute('href')))
     .filter(Boolean);
 
-  // ===== Intersection Observer (updates active link on scroll) =====
+  // ===== Team Swiper =====
+  const teamSwiper = new Swiper(".team-swiper", {
+    slidesPerView: 3,
+    spaceBetween: 20,
+    loop: true,
+    navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+    autoplay: { delay: 4000, disableOnInteraction: false },
+    breakpoints: {
+      640: { slidesPerView: 1, spaceBetween: 20 },
+      768: { slidesPerView: 2, spaceBetween: 25 },
+      1024: { slidesPerView: 3, spaceBetween: 30 },
+    },
+  });
+
+  // ===== FAQ Toggle =====
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const faqAnswer = item.querySelector('.faq-answer');
+    item.addEventListener('click', () => {
+      faqItems.forEach(i => {
+        if (i !== item) {
+          i.classList.remove('active');
+          i.querySelector('.faq-answer').style.maxHeight = 0;
+        }
+      });
+      item.classList.toggle('active');
+      if (item.classList.contains('active')) {
+        faqAnswer.style.maxHeight = faqAnswer.scrollHeight + "px";
+      } else {
+        faqAnswer.style.maxHeight = 0;
+      }
+    });
+  });
+
+  // ===== Intersection Observer (no fixed header) =====
   const io = new IntersectionObserver((entries) => {
     if (suppressIO) return;
 
@@ -64,34 +140,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, {
     root: null,
-    rootMargin: '0px 0px -60% 0px',
+    rootMargin: `0px 0px -60% 0px`,  
     threshold: [0.15, 0.35, 0.6]
   });
 
   sections.forEach(sec => io.observe(sec));
+
   setActiveByHash(location.hash || '#home');
+
   window.addEventListener('hashchange', () => {
     setActiveByHash(location.hash || '#home');
-  });
-
-  // ===== FAQ Toggle =====
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach(item => {
-    const faqAnswer = item.querySelector('.faq-answer');
-    item.addEventListener('click', () => {
-      faqItems.forEach(i => {
-        if (i !== item) {
-          i.classList.remove('active');
-          i.querySelector('.faq-answer').style.maxHeight = 0;
-        }
-      });
-      item.classList.toggle('active');
-      if (item.classList.contains('active')) {
-        faqAnswer.style.maxHeight = faqAnswer.scrollHeight + 'px';
-      } else {
-        faqAnswer.style.maxHeight = 0;
-      }
-    });
   });
 
   // ===== Counter Animation =====
@@ -108,13 +166,13 @@ document.addEventListener('DOMContentLoaded', () => {
         current = target;
         clearInterval(interval);
       }
-      el.textContent = current + '+';
+      el.textContent = current + "+";
     }, intervalTime);
   }
 
-  document.querySelectorAll('.stat-value').forEach(stat => {
+  document.querySelectorAll(".stat-value").forEach(stat => {
     const target = parseInt(stat.textContent, 10);
-    stat.textContent = '0+';
+    stat.textContent = "0+";
     animateCounter(stat, target);
   });
 
@@ -123,9 +181,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function scrollToTop() {
     const scroller = document.scrollingElement || document.documentElement;
-    const supportsSmooth =
-      'scrollBehavior' in document.documentElement.style &&
-      !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const supportsSmooth = 'scrollBehavior' in document.documentElement.style &&
+                           !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (supportsSmooth) {
       scroller.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -141,6 +199,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       requestAnimationFrame(step);
     }
+
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    window.scrollTo(0, 0);
   }
 
   toTopBtn?.addEventListener('click', (e) => {
@@ -160,61 +222,5 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, { root: null, threshold: [0, 0.2] });
     topIO.observe(homeSection);
-  }
-
-  // ===== Mobile Hamburger Nav =====
-  const menuBtn    = document.getElementById('menuToggle');
-  const mainNav    = document.getElementById('mainNav');
-  const navOverlay = document.getElementById('navOverlay');
-
-  function openMenu() {
-    mainNav.classList.add('is-open');
-    menuBtn?.classList.add('is-open');
-    if (navOverlay) {
-      navOverlay.hidden = false;
-      requestAnimationFrame(() => navOverlay.classList.add('is-open'));
-    }
-    menuBtn?.setAttribute('aria-expanded', 'true');
-    document.body.classList.add('menu-open');
-  }
-  function closeMenu() {
-    mainNav.classList.remove('is-open');
-    menuBtn?.classList.remove('is-open');
-    navOverlay?.classList.remove('is-open');
-    menuBtn?.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('menu-open');
-    setTimeout(() => {
-      if (navOverlay && !navOverlay.classList.contains('is-open')) {
-        navOverlay.hidden = true;
-      }
-    }, 250);
-  }
-
-  menuBtn?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    mainNav.classList.contains('is-open') ? closeMenu() : openMenu();
-  });
-
-  navOverlay?.addEventListener('click', closeMenu);
-
-  // Close on Esc
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mainNav.classList.contains('is-open')) closeMenu();
-  });
-
-  // Close menu when a nav link is clicked (helpful on mobile)
-  mainNav?.querySelectorAll('.nav-link').forEach(a => {
-    a.addEventListener('click', () => {
-      if (mainNav.classList.contains('is-open')) closeMenu();
-    });
-  });
-
-  // Auto-close drawer if resized to desktop
-  const mqDesktop = window.matchMedia('(min-width: 769px)');
-  if (mqDesktop.addEventListener) {
-    mqDesktop.addEventListener('change', (ev) => ev.matches && closeMenu());
-  } else if (mqDesktop.addListener) {
-    // Safari < 14
-    mqDesktop.addListener((ev) => ev.matches && closeMenu());
   }
 });
