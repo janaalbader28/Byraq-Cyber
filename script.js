@@ -19,12 +19,6 @@ const teamSwiper = new Swiper('.team-swiper', {
 });
 
 
-// ===== Open a specific PDF in a new tab =====
-const PDF_PATH = 'docs/profile.pdf';
-document.getElementById("downloadPDF")?.addEventListener("click", function (e) {
-  e.preventDefault();
-  window.open(PDF_PATH, "_blank", "noopener");
-});
 
 document.addEventListener("DOMContentLoaded", () => {
   // ===== Smooth Scroll =====
