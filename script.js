@@ -1,25 +1,4 @@
 
-const teamSwiper = new Swiper('.team-swiper', {
-  slidesPerView: 3,
-  spaceBetween: 25,
-  loop: true,
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-  autoplay: {
-    delay: 10000, // كل 10 ثواني
-    disableOnInteraction: false,
-  },
-  breakpoints: {
-    0: { slidesPerView: 1 },
-    768: { slidesPerView: 2 },
-    1024: { slidesPerView: 3 }
-  }
-});
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
   // ===== Smooth Scroll =====
   const links = document.querySelectorAll('.main-nav .nav-link');
