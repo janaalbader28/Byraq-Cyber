@@ -1550,3 +1550,103 @@ section[id] { scroll-margin-top: 90px; }
 
 
 
+/* ===== Minimal Intro ===== */
+html.intro-running { overflow: hidden; }
+
+html:not(.page-ready) body > * { opacity: 0; }
+html.page-ready body > * {
+  animation: pageFadeIn .9s ease-out forwards;
+}
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(3px); filter: blur(.8px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
+
+#introStage{
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: center;
+  opacity: 0; pointer-events: none; transition: opacity .35s ease;
+}
+#introStage.show { opacity: 1; pointer-events: auto; }
+
+#introStage .intro-bg{
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(1100px 700px at 85% 70%, #102145 0%, transparent 60%),
+    radial-gradient(900px 600px at 10% 20%, #0a1735 0%, transparent 55%),
+    linear-gradient(180deg, var(--bg-2), var(--bg-1));
+  opacity: 1;
+}
+
+.intro-wrap{
+  width: min(1100px, 92%);
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  align-items: center;
+  gap: clamp(12px, 4vw, 36px);
+  direction: ltr; 
+}
+
+.intro-text{
+  direction: rtl;
+  text-align: center;
+  margin: 0;
+  line-height: 1.35;
+  font-size: clamp(20px, 2vw + 12px, 34px);
+  color: #eef0ff;
+  text-wrap: balance;
+  opacity: 0;
+  transform: translateY(8px) scale(1.03);
+  transform-origin:  center;         
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.25));
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.intro-text .intro-title{
+  margin: 0 0 8px;
+  font-weight: 700;
+  line-height: 1.25;
+  font-size: clamp(22px, 1.8vw + 12px, 36px);
+}
+.intro-text .hero-sub{
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-weight: 400;                       
+  font-size: clamp(14px, 0.9vw + 9px, 18px);
+  line-height: 1.8;
+}
+
+/* Logo (left) */
+.intro-logo{
+  width: clamp(120px, 12vw, 160px);
+  height: auto;
+  object-fit: contain;
+  opacity: 0;
+  transform: translateY(6px) scale(1.04);
+  filter: drop-shadow(0 4px 14px rgba(0,0,0,.25));
+}
+
+
+.hero-intro{
+  text-align: center !important;
+  margin-inline: auto;          
+  max-width: min(900px, 92%);
+}
+.hero-intro .hero-sub{
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+} 
+@media (max-width: 768px){
+  .intro-wrap{
+    grid-template-columns: 1fr;
+    gap: 16px;
+    text-align: center;
+  }
+  .intro-text{ text-align: center; transform-origin: center; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  #introStage{ display: none !important; }
+  html:not(.page-ready) body > * { opacity: 1; }
+}
