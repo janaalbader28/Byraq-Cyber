@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   // ===== Smooth Scroll =====
   const links = document.querySelectorAll('.main-nav .nav-link');
@@ -72,54 +71,53 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ===== FAQ Toggle =====
-const faqItems = document.querySelectorAll('.faq-item');
+  const faqItems = document.querySelectorAll('.faq-item');
 
-faqItems.forEach(item => {
-  const a = item.querySelector('.faq-answer');
-  const q = item.querySelector('.faq-question');
+  faqItems.forEach(item => {
+    const a = item.querySelector('.faq-answer');
+    const q = item.querySelector('.faq-question');
 
-  a.style.maxHeight = '0px';
+    a.style.maxHeight = '0px';
 
-  q.addEventListener('click', () => {
-    const isOpen = item.classList.contains('active');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('active');
 
-    faqItems.forEach(i => {
-      if (i !== item) {
-        i.classList.remove('active');
-        const ai = i.querySelector('.faq-answer');
-        ai.style.maxHeight = '0px';
-        ai.style.overflow = 'hidden';
+      faqItems.forEach(i => {
+        if (i !== item) {
+          i.classList.remove('active');
+          const ai = i.querySelector('.faq-answer');
+          ai.style.maxHeight = '0px';
+          ai.style.overflow = 'hidden';
+        }
+      });
+
+      if (isOpen) {
+        item.classList.remove('active');
+        a.style.maxHeight = '0px';
+        a.style.overflow = 'hidden';
+      } else {
+        item.classList.add('active');
+        a.style.overflow = 'hidden';
+        a.style.maxHeight = '0px';
+        void a.offsetHeight;
+        a.style.maxHeight = a.scrollHeight + 'px';
       }
     });
 
-    if (isOpen) {
-      item.classList.remove('active');
-      a.style.maxHeight = '0px';
-      a.style.overflow = 'hidden';
-    } else {
-      item.classList.add('active');
-      a.style.overflow = 'hidden';
-      a.style.maxHeight = '0px';            
-      void a.offsetHeight;
-      a.style.maxHeight = a.scrollHeight + 'px';
-    }
+    a.addEventListener('transitionend', (e) => {
+      if (item.classList.contains('active') && e.propertyName === 'max-height') {
+        a.style.maxHeight = 'none';
+        a.style.overflow = 'visible';
+      }
+    });
   });
 
-  a.addEventListener('transitionend', (e) => {
-    if (item.classList.contains('active') && e.propertyName === 'max-height') {
-      a.style.maxHeight = 'none';   
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.faq-item.active .faq-answer').forEach(a => {
+      a.style.maxHeight = 'none';
       a.style.overflow = 'visible';
-    }
+    });
   });
-});
-
-window.addEventListener('resize', () => {
-  document.querySelectorAll('.faq-item.active .faq-answer').forEach(a => {
-    a.style.maxHeight = 'none';
-    a.style.overflow = 'visible';
-  });
-});
-
 
   // ===== Intersection Observer =====
   const io = new IntersectionObserver((entries) => {
@@ -143,7 +141,7 @@ window.addEventListener('resize', () => {
     }
   }, {
     root: null,
-    rootMargin: `0px 0px -60% 0px`,  
+    rootMargin: `0px 0px -60% 0px`,
     threshold: [0.15, 0.35, 0.6]
   });
 
@@ -228,48 +226,97 @@ window.addEventListener('resize', () => {
   }
 
   // ===== Hamburger =====
-const navToggle   = document.getElementById('nav-toggle');
-const hamburger   = document.querySelector('.hamburger');
-const mainNav     = document.getElementById('mobile-menu');
-const navLinksAll = document.querySelectorAll('.main-nav .nav-link');
+  const navToggle   = document.getElementById('nav-toggle');
+  const hamburger   = document.querySelector('.hamburger');
+  const mainNav     = document.getElementById('mobile-menu');
+  const navLinksAll = document.querySelectorAll('.main-nav .nav-link');
 
-function updateMenuState() {
-  const open = !!navToggle?.checked;
-  hamburger?.setAttribute('aria-expanded', open ? 'true' : 'false');
-  mainNav?.setAttribute('aria-hidden', open ? 'false' : 'true');
-  document.documentElement.style.overflow = open ? 'hidden' : '';
-}
-
-function closeMenu() {
-  if (navToggle && navToggle.checked) {
-    navToggle.checked = false;
-    updateMenuState();
+  function updateMenuState() {
+    const open = !!navToggle?.checked;
+    hamburger?.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mainNav?.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.documentElement.style.overflow = open ? 'hidden' : '';
   }
-}
 
-navToggle?.addEventListener('change', updateMenuState);
+  function closeMenu() {
+    if (navToggle && navToggle.checked) {
+      navToggle.checked = false;
+      updateMenuState();
+    }
+  }
 
-// close after clicking any nav link
-navLinksAll.forEach(a => {
-  a.addEventListener('click', () => {
-    closeMenu();
+  navToggle?.addEventListener('change', updateMenuState);
+
+  // close after clicking any nav link
+  navLinksAll.forEach(a => {
+    a.addEventListener('click', () => {
+      closeMenu();
+    });
   });
-});
 
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeMenu();
-});
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
 
-window.addEventListener('resize', () => {
-  if (window.innerWidth > 768) closeMenu();
-});
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) closeMenu();
+  });
 
-updateMenuState();
+  updateMenuState();
 
+  // ===== Hero-sub alternating highlight =====
+  function setupHeroSubHighlight(){
+    const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const subs = document.querySelectorAll('.hero-intro .hero-sub');
+    if (subs.length === 0) return;
 
+    const line1 = subs[0];
+    const line2 = subs[1] || null;
 
+    if (line1.dataset.chunksInit === '1') return;
+    line1.dataset.chunksInit = '1';
 
+    const original = line1.textContent.trim();
+    const parts = original.split('،');
+    const html = parts.map((seg, i) => {
+      const comma = (i < parts.length - 1) ? '،' : '';
+      return `<span class="hs-chunk" dir="rtl">${seg.trim()}${comma}</span>${i < parts.length - 1 ? ' ' : ''}`;
+    }).join('');
 
+    line1.innerHTML = html;
 
+    if (prefersReduce) return; 
 
+    const chunks = line1.querySelectorAll('.hs-chunk');
+    const EACH  = 1400; 
+    const GAP   = 220;  
+    const LINE2 = 1400; 
+
+    const wait = (ms)=>new Promise(r=>setTimeout(r, ms));
+
+    async function cycle(){
+      for (let i = 0; i < chunks.length; i++){
+        chunks.forEach(c => c.classList.remove('on'));
+        line2 && line2.classList.remove('hi-on');
+
+        chunks[i].classList.add('on');
+        await wait(EACH);
+        chunks[i].classList.remove('on');
+        await wait(GAP);
+      }
+
+      if (line2){
+        line2.classList.add('hi-on');
+        await wait(LINE2);
+        line2.classList.remove('hi-on');
+        await wait(GAP);
+      }
+
+      requestAnimationFrame(cycle); // loop
+    }
+
+    cycle();
+  }
+
+  setupHeroSubHighlight();
 });
