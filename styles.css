@@ -235,6 +235,10 @@ html:has(#nav-toggle:checked) .to-top{
     --intro-top-space: clamp(10px, 5.5vh, 8vh);
     --intro-bottom-space: clamp(18px, 8vh, 14vh);
   }
+    .intro-title{
+    font-size: clamp(20px, 6vw, 28px);
+    line-height: 1.15;
+  }
 }
 
 /* === Hero-sub highlight cycle === */
