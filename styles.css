@@ -247,7 +247,17 @@ html:has(#nav-toggle:checked) .to-top{
 .hero-intro .hero-sub .hs-chunk{ color: inherit; transition: color .35s ease; }
 .hero-intro .hero-sub .hs-chunk.on{ color:#fff; }
 
- 
+ /* tiny '(اطلاق تجريبي)' note */
+.hero-intro .beta-note{
+  margin: 6px auto 0;
+  font-size: clamp(10px, 1.2vw, 12px); /* صغير جدًا */
+  line-height: 1.2;
+  color: #96a1b6; /* أفتح من var(--muted) */
+  opacity: .9;
+  text-align: center;
+  letter-spacing: .2px;
+}
+
 
 /* ===== Hero ===== */
 .hero {
